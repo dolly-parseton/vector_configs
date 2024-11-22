@@ -11,7 +11,7 @@ Please note this only works on V2 of NSG Flow Logs. Based on the sample for V1 g
 
 VRL Script: [link](nsg_flow_logs.vrl)
 
-## 2. Azure NSG Flow Logs
+## 2. Azure VNET Flow Logs
 
 Samples: https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview
 

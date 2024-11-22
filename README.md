@@ -10,3 +10,9 @@ Samples: https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-o
 Please note this only works on V2 of NSG Flow Logs. Based on the sample for V1 given in the link above it contains a nested 'records' field that the VRL provided here does not handle.
 
 VRL Script: [link](nsg_flow_logs.vrl)
+
+## 2. Azure NSG Flow Logs
+
+Samples: https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview
+
+VRL Script: [link](vnet_flow_logs.vrl)

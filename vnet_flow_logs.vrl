@@ -1,0 +1,56 @@
+.mapping = []
+ 
+array_level_1 = .records
+ 
+for_each(array!(array_level_1)) -> |index, value_1| {
+    array_level_2 = get!(value_1, ["flowRecords", "flows"])
+ 
+    for_each(array!(array_level_2)) -> |index, value_2| {
+        array_level_3 = get!(value_2, ["flowGroups"])
+ 
+        for_each(array!(array_level_3)) -> |index, value_3| {
+            array_level_4 = get!(value_3, ["flowTuples"])
+ 
+            for_each(array!(array_level_4)) -> |index, value_4| {
+ 
+                base = {}
+                base.time = get!(value_1, ["time"])
+                base.flowLogVersion = get!(value_1, ["flowLogVersion"])
+                base.flowLogGUID = get!(value_1, ["flowLogGUID"])
+                base.macAddress = get!(value_1, ["macAddress"])
+                base.category = get!(value_1, ["category"])
+                base.flowLogResourceID = get!(value_1, ["flowLogResourceID"])
+                base.flowLogResourceID = get!(value_1, ["flowLogResourceID"])
+                base.operationName = get!(value_1, ["operationName"])
+ 
+                base.properties = {}
+ 
+                base.properties.aclID = get!(value_2, ["aclID"])
+ 
+                base.properties.rule = get!(value_3, ["rule"])
+ 
+                base.properties.flowTuplesRaw = value_4
+ 
+                tuple_split = parse_csv!(value_4)
+ 
+                base.properties.timestamp = tuple_split[0]
+                base.properties.sourceIP = tuple_split[1]
+                base.properties.destinationIP = tuple_split[2]
+                base.properties.sourcePort = tuple_split[3]
+                base.properties.destinationPort = tuple_split[4]
+                base.properties.protocol = tuple_split[5]
+                base.properties.trafficFlow = tuple_split[6]
+                base.properties.flowState = tuple_split[7]
+                base.properties.flowStateEncryptionStatus = tuple_split[8]
+                base.properties.packets = tuple_split[9]
+                base.properties.bytesSrcDst = tuple_split[10]
+                base.properties.packets = tuple_split[11]
+                base.properties.bytesDstSrc = tuple_split[12]
+ 
+                .mapping = push(.mapping, base)
+            }
+        }
+    }
+}
+ 
+. = .mapping
